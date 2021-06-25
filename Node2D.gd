@@ -1,5 +1,5 @@
 extends Node2D
-var myurl = "http://localhost:8080/" # Acá va la url donde vaya a estar el script php
+var myurl = "http://localhost:8080/php/" # Acá va la url donde vaya a estar el script php
 var phpDescarga = "jsonDatabase.php?tabla="
 var phpCrear = "createDatabase.php?tabla="
 var tabla = "ingreso"
@@ -20,8 +20,8 @@ func _ready():
 
 
 func _on_Button_pressed():
-	_make_post_request(myurl + phpCrear + tabla, dict, false)
 	print(myurl + phpCrear + tabla)
+	_make_post_request(myurl + phpCrear + tabla, dict, false)
 	print("Datos Enviados")
 
 func _make_post_request(url, data_to_send, use_ssl):
@@ -32,10 +32,11 @@ func _make_post_request(url, data_to_send, use_ssl):
 	$HTTPRequest.request(url, headers, use_ssl, HTTPClient.METHOD_POST, query)
 	
 func _on_dButton_pressed():
-	$HTTPRequest.request(myurl + phpDescarga + tabla)
 	print(myurl + phpDescarga + tabla)
+	$HTTPRequest.request(myurl + phpDescarga + tabla)
 	print("Datos Descargados")	
 	
 func _on_HTTPRequest_request_completed( result, response_code, headers, body ):
 	var json = JSON.parse(body.get_string_from_utf8())
-	print(json.result)
+	if json.result != null : 
+		print(json.result)
