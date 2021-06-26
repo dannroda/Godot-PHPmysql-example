@@ -2,9 +2,9 @@ extends Node2D
 var myurl = "http://www.saberes-astronomia.uns.edu.ar/testdb/php/" # Acá va la url donde vaya a estar el script php
 var phpDescarga = "jsonDatabase.php?tabla="
 var phpCrear = "createDatabase.php?tabla="
-var tabla = "ct"
+var tabla = "arssu"
 var dataText = "testData"
-var score = 14
+var score = 142
 
 
 
@@ -22,13 +22,15 @@ func _ready():
 func _on_Button_pressed():
 	print(myurl + phpCrear + tabla)
 	var cont = $LineEdit.text
-	var dict = {'name': dataText,'score': score, 'contenido': cont, 'coso' : 'coso'}
-	var dd = {'test' : 'test'}
-	var teste = JSON.print(dict)
-	var test = JSON.print(dd)
-	var k = teste[-1].insert(test)
-	print(k)
-	_make_post_request(myurl + phpCrear + tabla, dict, false)
+	var dict = {0: dataText,'score': score, 'cont': cont, 'coso' : 'coso'}
+	var ss = JSON.print(dict)
+	var zz = JSON.parse(ss).result
+	print(ss)
+	print(zz)
+	print(dict.values())
+	print(dict.keys())
+	print(dict)
+	_make_post_request(myurl + phpCrear + tabla, ss, false)
 	print("Datos Enviados")
 
 func _make_post_request(url, data_to_send, use_ssl):
@@ -49,8 +51,7 @@ func _on_HTTPRequest_request_completed( result, response_code, headers, body ):
 	#var j = json.result[0]
 	if json.result != null : 
 	#	print(j.count)
-		print(i)
-		print(json.result[str(i)]['contenido'])
+		print(json.result[0]['cont'])
 		#$RichTextLabel.text = json.result[num]['contenido']
 
 

@@ -1,6 +1,6 @@
 <?php
-$HostName = 'www.saberes-astronomia.uns.edu.ar';
-$HostUser = 'saberes';
-$HostPass = 'Acceso!!..SA!!..';
-$DatabaseName = 'saberes';
+$HostName = 'localhost';
+$HostUser = 'root';
+$HostPass = '01123581321';
+$DatabaseName = 'test';
 ?>
