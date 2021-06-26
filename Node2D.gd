@@ -1,11 +1,11 @@
 extends Node2D
-var myurl = "http://localhost:8080/php/" # Acá va la url donde vaya a estar el script php
+var myurl = "http://www.saberes-astronomia.uns.edu.ar/testdb/php/" # Acá va la url donde vaya a estar el script php
 var phpDescarga = "jsonDatabase.php?tabla="
 var phpCrear = "createDatabase.php?tabla="
-var tabla = "ingreso"
+var tabla = "ct"
 var dataText = "testData"
 var score = 14
-var dict = {'name': dataText,'score': score, 'test': "test" }
+
 
 
 
@@ -21,6 +21,13 @@ func _ready():
 
 func _on_Button_pressed():
 	print(myurl + phpCrear + tabla)
+	var cont = $LineEdit.text
+	var dict = {'name': dataText,'score': score, 'contenido': cont, 'coso' : 'coso'}
+	var dd = {'test' : 'test'}
+	var teste = JSON.print(dict)
+	var test = JSON.print(dd)
+	var k = teste[-1].insert(test)
+	print(k)
 	_make_post_request(myurl + phpCrear + tabla, dict, false)
 	print("Datos Enviados")
 
@@ -38,5 +45,30 @@ func _on_dButton_pressed():
 	
 func _on_HTTPRequest_request_completed( result, response_code, headers, body ):
 	var json = JSON.parse(body.get_string_from_utf8())
+	var i = $LineEdit2.text
+	#var j = json.result[0]
 	if json.result != null : 
-		print(json.result)
+	#	print(j.count)
+		print(i)
+		print(json.result[str(i)]['contenido'])
+		#$RichTextLabel.text = json.result[num]['contenido']
+
+
+func _on_TextEdit_focus_entered():
+	OS.show_virtual_keyboard()
+	print("test")
+	 # Replace with function body.
+
+
+func _on_TextEdit_focus_exited():
+	OS.hide_virtual_keyboard() # Replace with function body.
+
+
+func _on_LineEdit_focus_entered():
+	OS.show_virtual_keyboard() # Replace with function body.
+
+
+func _on_LineEdit_focus_exited():
+	OS.hide_virtual_keyboard() # Replace with function body.
+
+
