@@ -1,8 +1,8 @@
 extends Node2D
-var myurl = "http://www.saberes-astronomia.uns.edu.ar/testdb/php/" # Acá va la url donde vaya a estar el script php
+var myurl = "http://localhost:8080/" # Acá va la url donde vaya a estar el script php
 var phpDescarga = "jsonDatabase.php?tabla="
 var phpCrear = "createDatabase.php?tabla="
-var tabla = "arssu"
+var tabla = "as"
 var dataText = "testData"
 var score = 142
 
@@ -23,19 +23,15 @@ func _on_Button_pressed():
 	print(myurl + phpCrear + tabla)
 	var cont = $LineEdit.text
 	var dict = {0: dataText,'score': score, 'cont': cont, 'coso' : 'coso'}
-	var ss = JSON.print(dict)
-	var zz = JSON.parse(ss).result
-	print(ss)
-	print(zz)
-	print(dict.values())
-	print(dict.keys())
-	print(dict)
-	_make_post_request(myurl + phpCrear + tabla, ss, false)
+	#print(dict)
+	_make_post_request(myurl + phpCrear + tabla, dict, false)
 	print("Datos Enviados")
 
 func _make_post_request(url, data_to_send, use_ssl):
 	# Convert data to json string:
 	var query = JSON.print(data_to_send)
+	#print("query")
+	print(query)
 	# Add 'Content-Type' header:
 	var headers = ["Content-Type: application/json"]
 	$HTTPRequest.request(url, headers, use_ssl, HTTPClient.METHOD_POST, query)
@@ -47,11 +43,14 @@ func _on_dButton_pressed():
 	
 func _on_HTTPRequest_request_completed( result, response_code, headers, body ):
 	var json = JSON.parse(body.get_string_from_utf8())
+	#print(body.get_string_from_utf8())
+	#print(json)
 	var i = $LineEdit2.text
 	#var j = json.result[0]
 	if json.result != null : 
 	#	print(j.count)
-		print(json.result[0]['cont'])
+		#print(json.result[0]['cont'])
+		print(json.result)
 		#$RichTextLabel.text = json.result[num]['contenido']
 
 
