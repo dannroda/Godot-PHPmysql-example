@@ -1,5 +1,5 @@
 extends Node2D
-var myurl = "http://cors.dann.com.ar/www.saberes-astronomia.uns.edu.ar/php/" # Acá va la url donde vaya a estar el script php
+var myurl = "http://localhost:8080/" # Acá va la url donde vaya a estar el script php
 var phpDescarga = "jsonDatabase.php?"
 var phpCrear = "createDatabase.php?"
 var tabla = "&tabla="
@@ -25,7 +25,7 @@ func _on_Button_pressed():
 	var cont = $LineEdit.text
 	var codigo = $LineEdit2.text
 	
-	var dict = {'name': dataText, 'clave': clave,'score': score, 'cont': cont, 'coso' : 'coso'}
+	var dict = {'codigo': codigo, 'name': dataText ,'score': score, 'cont': cont, 'coso' : 'coso'}
 	#print(dict)
 	var tblname = $LineEdit3.text
 	print(myurl + phpCrear + tabla + tblname + clave + codigo)
@@ -47,7 +47,8 @@ func _on_dButton_pressed():
 	print("Datos Descargados")	
 	
 func _on_HTTPRequest_request_completed( result, response_code, headers, body ):
-	var json = JSON.parse(body.get_string_from_utf8())
+	print(body.get_string_from_utf8())
+	#var json = JSON.parse(body.get_string_from_utf8())
 	#print(body.get_string_from_utf8())
 	#print(json)
 	#var i = $LineEdit2.text

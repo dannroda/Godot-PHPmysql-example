@@ -30,10 +30,11 @@ __meta__ = {
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [node name="LineEdit" type="LineEdit" parent="."]
-margin_left = 105.0
-margin_top = 42.0
-margin_right = 243.0
-margin_bottom = 79.0
+margin_left = 106.0
+margin_top = 11.0
+margin_right = 244.0
+margin_bottom = 48.0
+text = "Name"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -49,9 +50,10 @@ __meta__ = {
 
 [node name="LineEdit2" type="LineEdit" parent="."]
 margin_left = 141.0
-margin_top = 5.0
+margin_top = 54.0
 margin_right = 199.0
-margin_bottom = 29.0
+margin_bottom = 78.0
+text = "Clave"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -61,6 +63,7 @@ margin_left = 142.0
 margin_top = 86.0
 margin_right = 200.0
 margin_bottom = 110.0
+text = "Tabla"
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="request_completed" from="Button/HTTPRequest" to="." method="_on_HTTPRequest_request_completed2"]

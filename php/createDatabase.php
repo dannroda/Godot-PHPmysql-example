@@ -34,17 +34,8 @@
     }
 
     $qi = substr_replace($qi,"",-1);
-    reset($j_obj);
-    if(($tblClave != 'testuser') and ($tblClave = $value)){
-        foreach($j_obj as $j_arr_key => $value{    
-            $qi .= " FOREIGN KEY (" . $tblClave . ") REFERENCES testuser(" . $tblClave . ")";
-            //$resultClave = mysqli_query($con,$valClave) or die(mysqli_error());
-            //echo "<script>console.log('caca');</script>";
-        }
-    }
     $qi .= ")";
     $result = mysqli_query($con,$qi) or die(mysqli_error());
-
     mysqli_close($con);
 
 ?>

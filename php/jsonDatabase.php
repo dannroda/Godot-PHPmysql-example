@@ -2,6 +2,7 @@
     header('Content-Type: application/json');
     include 'databaseConfig.php' ;
     $tblName = $_GET['tabla'];
+    $tblClave = $_GET['clave'];
     //include 'DatabaseConfig.php' ;
 
 
@@ -14,14 +15,24 @@
 
     $result = mysqli_query($con,$Sql_Query);
 
-    $json_array = array();
-
+    $json_clave_array = array();
+    $json_clave_array = array();
     while($row = mysqli_fetch_assoc($result))
     {
-        $json_array[] = $row;
+        if($tblClave == $row['codigo']){
+            $json_clave_array[] = $row;
+        }else {
+            $json_array[] = $row;
+        }
+        
     }
-
-    echo json_encode($json_array);
+    //print(json_encode($json_array[0]['codigo']));
+    //echo json_encode($result);
+    if($tblClave){
+        echo json_encode($json_clave_array);
+    }else{
+        echo json_encode($json_array);
+    }
 
     }
     else{
@@ -31,3 +42,4 @@
     }
     mysqli_close($con);
 ?>
+
