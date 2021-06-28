@@ -1,8 +1,9 @@
 extends Node2D
-var myurl = "http://localhost:8080/" # Acá va la url donde vaya a estar el script php
-var phpDescarga = "jsonDatabase.php?tabla="
-var phpCrear = "createDatabase.php?tabla="
-var tabla = "as"
+var myurl = "http://cors.dann.com.ar/www.saberes-astronomia.uns.edu.ar/php/" # Acá va la url donde vaya a estar el script php
+var phpDescarga = "jsonDatabase.php?"
+var phpCrear = "createDatabase.php?"
+var tabla = "&tabla="
+var clave = "&clave="
 var dataText = "testData"
 var score = 142
 
@@ -20,11 +21,15 @@ func _ready():
 
 
 func _on_Button_pressed():
-	print(myurl + phpCrear + tabla)
+	
 	var cont = $LineEdit.text
-	var dict = {0: dataText,'score': score, 'cont': cont, 'coso' : 'coso'}
+	var codigo = $LineEdit2.text
+	
+	var dict = {'name': dataText, 'clave': clave,'score': score, 'cont': cont, 'coso' : 'coso'}
 	#print(dict)
-	_make_post_request(myurl + phpCrear + tabla, dict, false)
+	var tblname = $LineEdit3.text
+	print(myurl + phpCrear + tabla + tblname + clave + codigo)
+	_make_post_request(myurl + phpCrear + tabla + tblname + clave + codigo, dict, false)
 	print("Datos Enviados")
 
 func _make_post_request(url, data_to_send, use_ssl):
@@ -38,20 +43,22 @@ func _make_post_request(url, data_to_send, use_ssl):
 	
 func _on_dButton_pressed():
 	print(myurl + phpDescarga + tabla)
-	$HTTPRequest.request(myurl + phpDescarga + tabla)
+	$HTTPRequest.request(myurl + phpDescarga + tabla + 'user')
 	print("Datos Descargados")	
 	
 func _on_HTTPRequest_request_completed( result, response_code, headers, body ):
 	var json = JSON.parse(body.get_string_from_utf8())
 	#print(body.get_string_from_utf8())
 	#print(json)
-	var i = $LineEdit2.text
+	#var i = $LineEdit2.text
+	#var codigo = json.result[0]
+	#$HTTPRequest.request(myurl + phpDescarga + tabla + 'user' + clave + codigo)
 	#var j = json.result[0]
-	if json.result != null : 
+#	if json.result != null : 
 	#	print(j.count)
 		#print(json.result[0]['cont'])
-		print(json.result)
-		#$RichTextLabel.text = json.result[num]['contenido']
+#		print(json.result)
+#		$RichTextLabel.text = json.result[0]['cont']
 
 
 func _on_TextEdit_focus_entered():
@@ -72,3 +79,15 @@ func _on_LineEdit_focus_exited():
 	OS.hide_virtual_keyboard() # Replace with function body.
 
 
+
+
+func _on_HTTPRequest_request_completed2(result, response_code, headers, body):
+	pass # Replace with function body.
+
+
+func _on_LineEdit3_focus_entered():
+	OS.hide_virtual_keyboard()  # Replace with function body.
+
+
+func _on_LineEdit3_focus_exited():
+	OS.hide_virtual_keyboard()  # Replace with function body.
