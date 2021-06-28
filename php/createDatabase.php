@@ -2,7 +2,7 @@
     include 'databaseConfig.php' ;
     $baseDatos = file_get_contents('php://input');
     $tblName = $_GET['tabla']; //Hay que ver de agarrar el nombre de la tabla desde godot
-    $tblCodigo = $_GEt['clave'];
+    $tblClave = $_GET['clave'];
     $con = mysqli_connect($HostName,$HostUser,$HostPass,$DatabaseName);
 
     $j_obj = json_decode($baseDatos, true);
@@ -18,7 +18,7 @@
     }
 
 
-    $qi = "INSERT INTO $tblName ('" . $tblCodigo . "'";
+    $qi = "INSERT INTO $tblName (";
     reset($j_obj);
 
     foreach($j_obj as $j_arr_key => $value){
@@ -26,7 +26,7 @@
     }  
 
     $qi = substr_replace($qi,"",-1);
-    $qi .= ") VALUES ('" . $tblCodigo . "'";
+    $qi .= ") VALUES (";
     reset($j_obj);
 
     foreach($j_obj as $j_arr_key => $value){
@@ -34,6 +34,14 @@
     }
 
     $qi = substr_replace($qi,"",-1);
+    reset($j_obj);
+    if(($tblClave != 'testuser') and ($tblClave = $value)){
+        foreach($j_obj as $j_arr_key => $value{    
+            $qi .= " FOREIGN KEY (" . $tblClave . ") REFERENCES testuser(" . $tblClave . ")";
+            //$resultClave = mysqli_query($con,$valClave) or die(mysqli_error());
+            //echo "<script>console.log('caca');</script>";
+        }
+    }
     $qi .= ")";
     $result = mysqli_query($con,$qi) or die(mysqli_error());
 
