@@ -5,6 +5,7 @@ export.cfg
 export_presets.cfg
 build/
 php/databaseConfig.php
+php/error.log
 #php/databaseConfig.php
 # Mono-specific ignores
 .mono/
