@@ -1,0 +1,37 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "www.saberes-astronomia.uns.edu.ar",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "Saberes",
+            "database": "saberes",
+            "username": "saberes",
+            "password": "Acceso!!..SA!!.."
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "Local",
+            "database": "${workspaceFolder:Godot-PHPmysql-example}/php/datos.db"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "CLOUD",
+            "database": "tablas",
+            "username": "root",
+            "password": "01123581321"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}

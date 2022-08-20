@@ -1,0 +1,1 @@
+INSERT INTO user (login,password) VALUES ('my_login','my_password');INSERT INTO usesr ) VALUES );INSERT INTO usr ) VALUES );INSERT INTO usr ) VALUES );

@@ -1,7 +1,8 @@
 extends Node2D
-var myurl = "http://localhost:8080/" # Acá va la url donde vaya a estar el script php
+var myurl = "http://127.0.0.1:4000/" # Acá va la url donde vaya a estar el script php
 var phpDescarga = "jsonDatabase.php?"
 var phpCrear = "createDatabase.php?"
+#var phpCrear = "carga.php?"
 var tabla = "&tabla="
 var clave = "&clave="
 var dataText = "testData"
@@ -46,8 +47,8 @@ func _on_dButton_pressed():
 	$HTTPRequest.request(myurl + phpDescarga + tabla + 'user')
 	print("Datos Descargados")	
 	
-func _on_HTTPRequest_request_completed( result, response_code, headers, body ):
-	print(body.get_string_from_utf8())
+#func _on_HTTPRequest_request_completed( result, response_code, headers, body ):
+#	print(body.get_string_from_utf8())
 	#var json = JSON.parse(body.get_string_from_utf8())
 	#print(body.get_string_from_utf8())
 	#print(json)
