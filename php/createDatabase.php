@@ -1,6 +1,8 @@
 <?php
     include 'databaseConfig.php' ;
+    header('Content-Type: application/json');
     $baseDatos = file_get_contents('php://input');
+    print('ESTO VIENE DEL PHP');
     $tblName = $_GET['tabla']; //Hay que ver de agarrar el nombre de la tabla desde godot
     $tblClave = $_GET['clave'];
     $con = mysqli_connect($HostName,$HostUser,$HostPass,$DatabaseName);
