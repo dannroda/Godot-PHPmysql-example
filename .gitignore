@@ -10,3 +10,5 @@ php/error.log
 # Mono-specific ignores
 .mono/
 data_*/
+.vscode/settings.json
+*.sql
